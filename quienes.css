@@ -1,0 +1,144 @@
+/* Reset básico */
+body {
+  margin: 30;
+  font-family: 'tahoma';
+  background-color: #121212; /* fondo oscuro */
+  color: #f4f4f4; /* texto claro */
+  line-height: 1.6;
+}
+
+
+.title {
+  color: #29b9fc;
+}
+
+/* Secciones principales */
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 60px 10%;
+  gap: 40px;
+  border-bottom: 1px solid rgba(255,255,255,0.1); 
+}
+
+/* Texto */
+.hero-texto {
+  flex: 1;
+}
+
+.hero-texto h1 {
+  top: 5%;
+  left: 5%;
+  font-size: 65px;
+  margin-bottom: 20px;
+  color: #29b9fc; 
+}
+
+.hero-texto h2 {
+  font-size: 20px;
+  font-weight: normal;
+  color: #ddd;
+}
+
+/* Imagen */
+.hero-imagen {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+.hero-imagen img {
+  width: 100%;
+  max-width: 600px; /* media página */
+  border-radius: 12px;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.hero-imagen img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.8);
+}
+
+/* Alternar orden en la segunda sección */
+.hero:nth-of-type(2) {
+  flex-direction: row-reverse;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .hero:nth-of-type(2) {
+    flex-direction: column;
+  }
+  .hero-imagen img {
+    max-width: 100%;
+  }
+}
+
+img {
+    margin: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+    margin-top:15px;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 191, 255, 0.6);
+}
+
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px #999;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  overflow: visible;
+}
+
+/* Ícono dentro del botón */
+.whatsapp-icon {
+  width: 35px;
+  height: 35px;
+}
+
+/* Tooltip */
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background-color: #64c3fa;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: absolute;
+  right: 70px; /* Ubicación a la izquierda del botón */
+  bottom: 15px;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+  font-size: 14px;
+}
+
+/* Mostrar tooltip al pasar el mouse */
+.whatsapp-float:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Efecto hover en el botón */
+.whatsapp-float:hover {
+  background-color: #20b858;
+}

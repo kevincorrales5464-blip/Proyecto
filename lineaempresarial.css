@@ -1,0 +1,122 @@
+body {
+    background-color: #0a0a0a; /* negro profundo */
+    color: #e0e0e0; /* texto claro */
+    font-family: "tahoma";
+    margin: 0;
+    padding: 0;
+}
+
+.title {
+  color: #29b9fc;
+  padding: auto;
+}
+
+/* Encabezado central */
+header h1 {
+    color: #00bfff; /* azul cielo */
+    font-size: 3rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #aaa;
+    font-size: 1.2rem;
+}
+
+/* Separador visual */
+.separator {
+    height: 4px;
+    background: linear-gradient(to right, #00bfff, #007bff);
+    border-radius: 2px;
+    margin: 40px 0;
+}
+
+/* Títulos de secciones */
+h2 {
+    color: #00bfff;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Imágenes con estilo */
+img {
+    margin: 15px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0, 191, 255, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+img:hover {
+    margin-top:15px;
+    transform: scale(1.05);
+    box-shadow: 0 0 25px rgba(0, 191, 255, 0.6);
+}
+
+/* Botones corporativos */
+.btn-custom {
+    background-color: #00bfff;
+    color: #0a0a0a;
+    font-weight: bold;
+    border-radius: 6px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-custom:hover {
+    background-color: #007bff;
+    color: #fff;
+}
+
+
+.whatsapp-float {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25D366;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px #999;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  overflow: visible;
+}
+
+/* Ícono dentro del botón */
+.whatsapp-icon {
+  width: 35px;
+  height: 35px;
+}
+
+/* Tooltip */
+.tooltip {
+  visibility: hidden;
+  opacity: 0;
+  background-color: #64c3fa;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  padding: 5px 10px;
+  position: absolute;
+  right: 70px; /* Ubicación a la izquierda del botón */
+  bottom: 15px;
+  white-space: nowrap;
+  transition: opacity 0.3s;
+  font-size: 14px;
+}
+
+/* Mostrar tooltip al pasar el mouse */
+.whatsapp-float:hover .tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Efecto hover en el botón */
+.whatsapp-float:hover {
+  background-color: #20b858;
+}
