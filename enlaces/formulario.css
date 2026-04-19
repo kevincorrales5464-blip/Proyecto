@@ -1,5 +1,5 @@
 body {
-  margin: 30;
+  margin: 30px;
   font-family: 'tahoma';
   background-color: #121212; /* fondo oscuro */
   color: #f4f4f4; /* texto claro */
@@ -17,7 +17,7 @@ body {
 
 .formulario {
   background: #2c2c2c;
-  padding: 80px;
+  padding: 70px;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
   color: #f0f0f0;
