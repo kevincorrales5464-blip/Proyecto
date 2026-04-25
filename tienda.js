@@ -1,56 +1,75 @@
-// Lista de productos simulada
 const productos = [
-  { nombre: "kit piezas mate", precio: 120000, stock: 15 },
-  { nombre: "Kit restauración partes negras", precio: 250000, stock: 8 },
-  { nombre: "kit detalling", precio: 90000, stock: 20 }
+  { nombre: "Kit Restauración", precio: 250000 },
+  { nombre: "Kit Detailing", precio: 90000 },
+  { nombre: "Kit Lavado", precio: 120000 }
 ];
 
-// Carrito vacío
 let carrito = [];
 
 // Mostrar productos
 function mostrarProductos() {
-  const contenedor = document.getElementById("lista-productos");
-  contenedor.innerHTML = "";
+  const lista = document.getElementById("lista-productos");
+  lista.innerHTML = "";
 
-  productos.forEach((prod, index) => {
-    contenedor.innerHTML += `
+  productos.forEach((prod, i) => {
+    lista.innerHTML += `
       <div class="col-md-4">
-        <div class="card futuristic-card shadow">
-          <div class="card-body">
-            <h5 class="card-title">${prod.nombre}</h5>
-            <p class="card-text">Precio: $${prod.precio.toLocaleString("es-CO")}</p>
-            <p class="card-text">Disponibles: ${prod.stock}</p>
-            <label for="cantidad-${index}">Cantidad:</label>
-            <input type="number" id="cantidad-${index}" min="1" max="${prod.stock}" value="1" class="form-control mb-2">
-            <button class="btn btn-custom" onclick="agregarAlCarrito(${index})">Agregar al carrito</button>
-          </div>
+        <div class="futuristic-card p-3 text-center">
+          <h5>${prod.nombre}</h5>
+          <p>$${prod.precio}</p>
+
+          <input type="number" id="cant-${i}" value="1" min="1" class="form-control mb-2">
+
+          <button class="btn btn-custom" onclick="agregar(${i})">
+            Comprar
+          </button>
         </div>
       </div>
     `;
   });
 }
 
-// Agregar producto al carrito
-function agregarAlCarrito(index) {
-  const input = document.getElementById(`cantidad-${index}`);
-  const cantidad = parseInt(input.value);
-  const producto = productos[index];
+// Agregar al carrito
+function agregar(i) {
+  const cantidad = parseInt(document.getElementById(`cant-${i}`).value);
+  const prod = productos[i];
 
-  if (!isNaN(cantidad) && cantidad > 0 && cantidad <= producto.stock) {
-    
-    // Verificar si el producto ya está en el carrito
-    const existente = carrito.find(item => item.nombre === producto.nombre);
+  if (cantidad <= 0) return;
 
-    if (existente) {
-      existente.cantidad += cantidad;
-    } else {
-      carrito.push({ ...producto, cantidad });
-    }
+  carrito.push({
+    nombre: prod.nombre,
+    precio: prod.precio,
+    cantidad: cantidad
+  });
 
-    actualizarCarrito();
+  actualizarCarrito();
+}
 
-  } else {
-    alert("Cantidad inválida");
-  }
+// Mostrar carrito
+function actualizarCarrito() {
+  const div = document.getElementById("carrito");
+  const totalDiv = document.getElementById("total");
+
+  div.innerHTML = "";
+  let total = 0;
+
+  carrito.forEach((item, i) => {
+    const subtotal = item.precio * item.cantidad;
+    total += subtotal;
+
+    div.innerHTML += `
+      <div>
+        ${item.nombre} x${item.cantidad} - $${subtotal}
+        <button onclick="eliminar(${i})">X</button>
+      </div>
+    `;
+  });
+
+  totalDiv.textContent = "Total: $" + total;
+}
+
+// Eliminar producto
+function eliminar(i) {
+  carrito.splice(i, 1);
+  actualizarCarrito();
 }

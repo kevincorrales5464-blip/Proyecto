@@ -86,7 +86,7 @@ body {
   100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
 }
 
-/* Glow efecto en título */
+/* Glow título */
 @keyframes glow {
   from { text-shadow: 0 0 10px #00bfff; }
   to { text-shadow: 0 0 20px #00bfff, 0 0 30px #007bff; }
@@ -103,4 +103,40 @@ body {
 .futuristic-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 0 25px rgba(0, 191, 255, 0.6);
+}
+
+/* ========================= */
+/* 🛒 CARRITO (AGREGADO) */
+/* ========================= */
+
+#carrito {
+  background: #111;
+  border: 1px solid rgba(0, 191, 255, 0.4);
+  padding: 15px;
+  border-radius: 15px;
+  box-shadow: 0 0 20px rgba(0, 191, 255, 0.15);
+  min-height: 80px;
+}
+
+#carrito p,
+#carrito div {
+  color: #e0e0e0;
+  margin: 5px 0;
+  padding: 5px;
+  border-bottom: 1px solid rgba(0, 191, 255, 0.1);
+}
+
+/* Botón eliminar carrito */
+#carrito button {
+  font-size: 12px;
+  padding: 4px 8px;
+}
+
+/* TOTAL */
+#total {
+  color: #00bfff;
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-top: 10px;
+  text-shadow: 0 0 10px #00bfff;
 }
