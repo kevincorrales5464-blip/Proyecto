@@ -1,142 +1,120 @@
 body {
-  background-color: #0a0a0a;
-  color: #e0e0e0;
-  font-family: 'Exo', sans-serif;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #0a0a0a, #111827);
+  color: #e5e7eb;
   margin: 0;
   padding: 0;
+  text-align: center;
 }
 
-/* Encabezado futurista */
-.tienda-header {
-  position: relative;
-  height: 100vh;
-  background: linear-gradient(135deg, #0a0a0a, #1a1a1a);
-  overflow: hidden;
-}
-
-.tienda-header h1 {
+/* TÍTULOS */
+h1 {
+  margin-top: 20px;
+  font-size: 2.5rem;
   color: #00bfff;
-  text-transform: uppercase;
-  letter-spacing: 3px;
-  animation: glow 2s ease-in-out infinite alternate;
+  text-shadow: 0 0 10px #00bfff;
 }
 
-.tienda-header p {
-  color: #aaa;
+h2 {
+  margin-top: 30px;
+  color: #38bdf8;
 }
 
-.futuristic-img {
-  border-radius: 20px;
-  box-shadow: 0 0 30px rgba(0, 191, 255, 0.6);
-  transition: transform 0.5s ease;
+/* CONTENEDOR PRODUCTOS */
+.contenedor {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  padding: 20px;
 }
 
-.futuristic-img:hover {
-  transform: scale(1.05) rotateY(5deg);
-}
-
-/* Botón futurista */
-.btn-custom {
-  background: linear-gradient(90deg, #00bfff, #007bff);
-  color: #0a0a0a;
-  font-weight: bold;
-  border-radius: 30px;
-  padding: 12px 25px;
+/* TARJETAS */
+.card {
+  background: rgba(17, 24, 39, 0.9);
+  border-radius: 15px;
+  padding: 20px;
+  width: 220px;
+  box-shadow: 0 0 15px rgba(0, 191, 255, 0.2);
   transition: all 0.3s ease;
 }
 
-.btn-custom:hover {
-  background: linear-gradient(90deg, #007bff, #00bfff);
-  color: #fff;
-  box-shadow: 0 0 15px #00bfff;
-}
-
-/* Animación de círculos */
-.circulos {
-  position: absolute;
-  top: 0; left: 0;
-  width: 100%; height: 100%;
-  overflow: hidden;
-  z-index: 1;
-}
-
-.circulos li {
-  position: absolute;
-  display: block;
-  list-style: none;
-  width: 20px; height: 20px;
-  background: rgba(0, 191, 255, 0.3);
-  animation: animar 25s linear infinite;
-  bottom: -150px;
-}
-
-.circulos li:nth-child(1){ left: 10%; }
-.circulos li:nth-child(2){ left: 20%; animation-delay: 2s; animation-duration: 12s; }
-.circulos li:nth-child(3){ left: 70%; animation-delay: 4s; }
-.circulos li:nth-child(4){ left: 40%; width: 60px; height: 60px; animation-duration: 18s; }
-.circulos li:nth-child(5){ left: 65%; }
-.circulos li:nth-child(6){ left: 75%; width: 110px; height: 110px; animation-delay: 3s; }
-.circulos li:nth-child(7){ left: 35%; width: 150px; height: 150px; animation-delay: 7s; }
-.circulos li:nth-child(8){ left: 50%; width: 25px; height: 25px; animation-delay: 15s; animation-duration: 45s; }
-.circulos li:nth-child(9){ left: 20%; width: 15px; height: 15px; animation-delay: 2s; animation-duration: 35s; }
-.circulos li:nth-child(10){ left: 85%; width: 150px; height: 150px; animation-duration: 11s; }
-
-@keyframes animar {
-  0% { transform: translateY(0) rotate(0deg); opacity: 1; border-radius: 0; }
-  100% { transform: translateY(-1000px) rotate(720deg); opacity: 0; border-radius: 50%; }
-}
-
-/* Glow título */
-@keyframes glow {
-  from { text-shadow: 0 0 10px #00bfff; }
-  to { text-shadow: 0 0 20px #00bfff, 0 0 30px #007bff; }
-}
-
-/* Tarjetas futuristas */
-.futuristic-card {
-  background: #111;
-  border: 1px solid rgba(0, 191, 255, 0.3);
-  border-radius: 15px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.futuristic-card:hover {
-  transform: translateY(-10px);
+.card:hover {
+  transform: translateY(-10px) scale(1.03);
   box-shadow: 0 0 25px rgba(0, 191, 255, 0.6);
 }
 
-/* ========================= */
-/* 🛒 CARRITO (AGREGADO) */
-/* ========================= */
-
-#carrito {
-  background: #111;
-  border: 1px solid rgba(0, 191, 255, 0.4);
-  padding: 15px;
-  border-radius: 15px;
-  box-shadow: 0 0 20px rgba(0, 191, 255, 0.15);
-  min-height: 80px;
+/* TEXTO */
+.card h3 {
+  margin-bottom: 10px;
+  color: #00bfff;
 }
 
-#carrito p,
-#carrito div {
-  color: #e0e0e0;
-  margin: 5px 0;
+.card p {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #22c55e;
+}
+
+/* INPUT */
+input {
+  width: 60px;
   padding: 5px;
-  border-bottom: 1px solid rgba(0, 191, 255, 0.1);
+  border-radius: 5px;
+  border: none;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
-/* Botón eliminar carrito */
+/* BOTONES */
+button {
+  background: linear-gradient(45deg, #00bfff, #007bff);
+  border: none;
+  padding: 8px 12px;
+  color: white;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #00bfff;
+}
+
+/* CARRITO */
+#carrito {
+  margin: 20px auto;
+  width: 300px;
+}
+
+#carrito div {
+  background: #1f2937;
+  padding: 10px;
+  border-radius: 8px;
+  margin: 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* BOTÓN ELIMINAR */
 #carrito button {
-  font-size: 12px;
-  padding: 4px 8px;
+  background: crimson;
+  padding: 5px 8px;
 }
 
 /* TOTAL */
 #total {
-  color: #00bfff;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
+  color: #00ffcc;
+  text-shadow: 0 0 10px #00ffcc;
+}
+
+/* BOTÓN FINAL */
+.btn-comprar {
+  margin-top: 15px;
+  background: linear-gradient(45deg, limegreen, green);
   font-weight: bold;
-  margin-top: 10px;
-  text-shadow: 0 0 10px #00bfff;
+  padding: 10px 20px;
 }
