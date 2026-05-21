@@ -24,66 +24,78 @@ if (mysqli_num_rows($resultado) > 0) {
     // Extraemos los datos del usuario que acaba de ingresar
     $fila = mysqli_fetch_assoc($resultado);
 
-    // GUARDADO CLAVE: Guardamos el 'nombre' (ej: leandro) en la sesión dinámica
-    $_SESSION['usuario_login'] = $fila['nombre'];
-    $usuario = $fila['nombre'];
 
     // Renderizamos SweetAlert2 para la bienvenida profesional
     echo '<!DOCTYPE html>
     <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Procesando...</title>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-        <style>body { background-color: #f4f7fb; }</style>
-    </head>
-    <body>
-        <script>
-            Swal.fire({
-                title: "¡Inicio de Sesión Exitoso!",
-                text: "Bienvenido de nuevo, ' . htmlspecialchars($usuario) . '",
-                icon: "success",
-                confirmButtonColor: "#0d6efd", 
-                confirmButtonText: "Ingresar al Panel",
-                timer: 2500, 
-                timerProgressBar: true,
-                willClose: () => {
-                    window.location.href = "index.php";
-                }
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    window.location.href = "index.php";
-                }
-            });
-        </script>
-    </body>
-    </html>';
-    exit();
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RepinCar Taller automotriz</title>
+  <link rel="stylesheet" href="Repincar.css">
+</head>
+<body>
 
-} else {
-    // Si los datos no coinciden, mostramos el modal de error de forma estética
-    echo '<!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Error</title>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    </head>
-    <body>
-        <script>
-            Swal.fire({
-                title: "Error de Autenticación",
-                text: "Usuario o contraseña incorrectos. Por favor, verifica.",
-                icon: "error",
-                confirmButtonColor: "#dc3545",
-                confirmButtonText: "Intentarlo de nuevo"
-            }).then(() => {
-                window.location.href = "login.html";
-            });
-        </script>
-    </body>
-    </html>';
-    exit();
-}
+
+  <!-- Encabezado con logo y título -->
+  <header class="backgroundThemes">
+    <div class="banner-container">
+      <img src="imagenes/banner.jpg" alt="Banner del Taller" width="600" height="150">
+      <h1>RepinCar</h1>
+    
+    </div>
+  </header>
+
+  <!-- Barra de navegación -->
+  <nav class="navbar">
+    <ul>
+      <li><a href="index.html" title="Pagina principal">Inicio</a></li>
+      <li><a href="quienes.html" title="Conocenos">Quienes Somos</a></li>
+      <li><a href="servicios.html" title="Conoce nuestros servicios">Servicios</a></li>
+      <li><a href="lineaempresarial.html" title="Nuestros servicios">Línea Empresarial</a></li>
+      <li><a href="tienda.html" title="Nuestros productos">Tienda</a></li>
+    </ul>
+  </nav>
+
+  <!-- Íconos sociales -->
+  <div class="social-icons">
+  <a href="https://www.instagram.com/artededonjulio/" target="_blank" class="social-link">
+    <img src="imagenes/instagram.jpg" title="Siguenos en Instagram" >
+  </a>  
+  <a href="https://www.tiktok.com/@artededonjulio" target="_blank" class="social-link">
+    <img src="imagenes/tiktok.jpg" title="Siguenos en Tiktok">
+  </a>
+  <a href="https://www.youtube.com/@ArtedeDonJulio" target="_blank" class="social-link">
+    <img src="imagenes/youtube.jpg" title="Nuestro YouTube">
+  </a>
+  <a href="https://maps.app.goo.gl/WYLYC19LEsMyhC1u5" target="_blank" class="social-link">
+    <img src="imagenes/maps.jpg"  title="visitanos">
+  </a>
+  
+</div>
+
+  <!-- Contenido principal -->
+  <section class="hero">
+    <h1>Pintura y Restauración de <span>VEHÍCULOS</span></h1>
+    <p>Transformamos tu vehículo con acabados de alto nivel, máxima durabilidad y atención especializada.</p>
+    <a href="enlaces/formulario.html" target="_blank" class="btn">Cotiza ahora! </a>
+  </section>
+
+
+  <!-- Botón WhatsApp -->
+<a href="https://wa.me/573506227558?text=Hola%20quiero%20más%20información%20sobre%20RepinCar" 
+   class="whatsapp-float" 
+   target="_blank">
+   <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" 
+        alt="WhatsApp" 
+        class="whatsapp-icon">
+   <span class="tooltip">Escríbenos por WhatsApp</span>
+</a>
+
+
+  <script src="Repincar.js"></script>
+
+
+</body>
+</html>
 ?>
