@@ -13,7 +13,7 @@
 
     <form method="POST">
         <input type="text" name="usuario" placeholder="Usuario" required>
-        <input type="password" name="contrasena" placeholder="Contraseña" required>
+        <input type="password" name="contraseña" placeholder="Contraseña" required>
         <button type="submit" name="register">Registrarse</button>
     </form>
 
@@ -24,9 +24,9 @@
         include("conexion.php");
 
         $usuario = $_POST['usuario'];
-        $contrasena = $_POST['contrasena'], PASSWORD_DEFAULT;
+        $contrasena = $_POST['contraseña'], PASSWORD_DEFAULT;
 
-        $sql = "INSERT INTO usuarios (usuario, contrasena) VALUES ('$usuario', '$contrasena')";
+        $sql = "INSERT INTO usuarios (usuario, contraseña) VALUES ('$usuario', '$contraseña')";
         
         if (mysqli_query($conexion, $sql)) {
             echo "Usuario registrado exitosamente.";

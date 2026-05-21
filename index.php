@@ -25,13 +25,13 @@
             include("conexion.php");
 
             $usuario = $_POST['usuario'];
-            $contrasena = $_POST['contrasena'];
+            $contraseña = $_POST['contraseña'];
 
             $sql = "SELECT * FROM  usuarios WHERE usuario=`$usuario'";
             $res = mysqli_query($conexion, $sql);
 
             if ($fila = mysqli_fetch_assoc($res)) {
-                if ($password_verify($contrasena, $fila['contrasena'])) {
+                if ($password_verify($contraseña, $fila['contraseña'])) {
                     $_SESSION['usuario'] = $usuario;
                     header("Location: home.php");
                 }
