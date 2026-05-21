@@ -1,47 +1,27 @@
-<?php session_start(); ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" type="text/css" href="stileInicio.css">
-</head>
-<body>
-    <div class="container">
-        <h2> Iniciar Sesiòn</h2>
-        
-        <form method="POST" action="login.php">
+<?php
+session_start();
+include("conexion.php");
 
-            <input type="text" name="usuario" placeholder="Usuario" required>
-            <input type="password" name="contraseña" placeholder="Contraseña" required>
-            <button type="submit" name="login">Ingresar</button>
-        </form>
+if (isset($_POST['usuario']) && isset($_POST['password'])) {
 
-        <a href="registro.php">¿No tienes una cuenta? Regístrate aquí</a>
+    $usuario = $_POST['usuario'];
+    $password = $_POST['password'];
 
-        <?php
-        if (isset($_SESSION['usuario'])) {
-            include("conexion.php");
+    $sql = "SELECT * FROM usuarios WHERE usuario='$usuario'";
+    $res = mysqli_query($conexion, $sql);
 
-            $usuario = $_POST['usuario'];
-            $contraseña = $_POST['contraseña'];
+    if ($fila = mysqli_fetch_assoc($res)) {
 
-            $sql = "SELECT * FROM  usuarios WHERE usuario=`$usuario'";
-            $res = mysqli_query($conexion, $sql);
+        if (password_verify($password, $fila['password'])) {
+            $_SESSION['usuario'] = $usuario;
+            header("Location: home.php");
+            exit();
+        } else {
+            echo "<p>Contraseña incorrecta</p>";
+        }
 
-            if ($fila = mysqli_fetch_assoc($res)) {
-                if ($password_verify($contraseña, $fila['contraseña'])) {
-                    $_SESSION['usuario'] = $usuario;
-                    header("Location: home.php");
-                }
-                } else {
-                    echo "<p>Contraseña incorrecta</p>";
-                }
-            }else {
-                echo "<p>Usuario no existente</p>";
-            }
-        <?php
-    </div>
-</body>
-</html>
+    } else {
+        echo "<p>Usuario no existe</p>";
+    }
+}
+?>

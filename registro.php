@@ -8,13 +8,13 @@
 </head>
 <body>
 
-<div clas="container">
-    <h2> Crear Cuenta</h2>
+<div class="container">
+    <h2>Crear Cuenta</h2>
 
     <form method="POST">
         <input type="text" name="usuario" placeholder="Usuario" required>
-        <input type="password" name="contraseña" placeholder="Contraseña" required>
-        <button type="submit" name="register">Registrarse</button>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit" name="registro">Registrarse</button>
     </form>
 
     <a href="index.php">¿Ya tienes una cuenta? Inicia sesión aquí</a>
@@ -24,12 +24,12 @@
         include("conexion.php");
 
         $usuario = $_POST['usuario'];
-        $contraseña = $_POST['contraseña'], PASSWORD_DEFAULT;
+        $password = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO usuarios (usuario, contraseña) VALUES ('$usuario', '$contraseña')";
-        
+        $sql = "INSERT INTO usuarios (usuario, password) VALUES ('$usuario', '$password')";
+
         if (mysqli_query($conexion, $sql)) {
-            echo "Usuario registrado exitosamente.";
+            echo "<p>Usuario registrado exitosamente</p>";
         } else {
             echo "<p>Error: el usuario ya existe</p>";
         }
