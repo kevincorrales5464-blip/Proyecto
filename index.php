@@ -27,7 +27,7 @@ if (mysqli_num_rows($resultado) > 0) {
 
     // Renderizamos SweetAlert2 para la bienvenida profesional
     
-<!DOCTYPE html>
+echo '<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
@@ -98,5 +98,10 @@ if (mysqli_num_rows($resultado) > 0) {
 
 
 </body>
-</html>
+</html>';
+else {
+    // Si no se encuentra el usuario, redirigimos al login
+    header("Location: index.php");
+    exit();
+}
 ?>
