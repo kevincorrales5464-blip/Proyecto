@@ -1,29 +1,24 @@
 const productos = [
-  { nombre: "Kit Restauración", precio: 250000 },
-  { nombre: "Kit Detailing", precio: 90000 },
-  { nombre: "Kit Lavado", precio: 120000 }
+  { nombre: "Kit de Limpieza", precio: 50000 },
+  { nombre: "Kit Partes Negras", precio: 70000 },
+  { nombre: "Kit de Brillado", precio: 90000 }
 ];
 
 let carrito = [];
 
 // Mostrar productos
 function mostrarProductos() {
-  const lista = document.getElementById("lista-productos");
-  lista.innerHTML = "";
+  const contenedor = document.getElementById("productos");
 
   productos.forEach((prod, i) => {
-    lista.innerHTML += `
-      <div class="col-md-4">
-        <div class="futuristic-card p-3 text-center">
-          <h5>${prod.nombre}</h5>
-          <p>$${prod.precio}</p>
+    contenedor.innerHTML += `
+      <div class="card">
+        <h3>${prod.nombre}</h3>
+        <p>Precio: $${prod.precio}</p>
 
-          <input type="number" id="cant-${i}" value="1" min="1" class="form-control mb-2">
+        <input type="number" id="cant-${i}" value="1" min="1">
 
-          <button class="btn btn-custom" onclick="agregar(${i})">
-            Comprar
-          </button>
-        </div>
+        <button onclick="agregar(${i})">Agregar</button>
       </div>
     `;
   });
@@ -33,8 +28,6 @@ function mostrarProductos() {
 function agregar(i) {
   const cantidad = parseInt(document.getElementById(`cant-${i}`).value);
   const prod = productos[i];
-
-  if (cantidad <= 0) return;
 
   carrito.push({
     nombre: prod.nombre,
@@ -73,3 +66,18 @@ function eliminar(i) {
   carrito.splice(i, 1);
   actualizarCarrito();
 }
+
+// Finalizar compra
+function comprar() {
+  if (carrito.length === 0) {
+    alert("El carrito está vacío");
+    return;
+  }
+
+  alert("Compra realizada con éxito 🚗✨");
+  carrito = [];
+  actualizarCarrito();
+}
+
+// Inicializar
+mostrarProductos();
