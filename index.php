@@ -3,7 +3,7 @@
 session_start();
 
 // 2. Incluimos el archivo de conexión
-include("conexion.php");
+include("home.php");
 
 // Verificación y corrección de la variable de conexión en caso de fallos externos
 if (!isset($conexion)) {
@@ -11,11 +11,11 @@ if (!isset($conexion)) {
 }
 
 // 3. Capturamos los datos del formulario de login
-$correo = mysqli_real_escape_string($conexion, $_POST['correo']);
+$correo = mysqli_real_escape_string($conexion, $_POST['usuario']);
 $password = mysqli_real_escape_string($conexion, $_POST['password']);
 
 // 4. Consulta SQL para validar las credenciales
-$sql = "SELECT * FROM usuarios WHERE correo='$correo' AND password='$password'";
+$sql = "SELECT * FROM usuarios WHERE password='$password'";
 $resultado = mysqli_query($conexion, $sql);
 
 // 5. Verificamos si encontramos una coincidencia exacta
