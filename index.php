@@ -26,7 +26,8 @@ if (mysqli_num_rows($resultado) > 0) {
 
 
     // Renderizamos SweetAlert2 para la bienvenida profesional
-    echo "<!DOCTYPE html>
+    
+    <!DOCTYPE html>
     <html lang="es">
 <head>
   <meta charset="UTF-8">
