@@ -2,7 +2,7 @@
 session_start();
 include("conexion.php");
 
-if (isset($_POST['usuario']) && isset($_POST['password'])) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $usuario = $_POST['usuario'];
     $password = $_POST['password'];
