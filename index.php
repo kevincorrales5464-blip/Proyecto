@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['usuario'] = $usuario;
 
                 // 🔥 REDIRECCIÓN REAL
-                header("Location: home.php");
+                header("Location: login.php");
                 exit();
 
             } else {
