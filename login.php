@@ -3,27 +3,35 @@ session_start();
 include("conexion.php");
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $usuario = $_POST['usuario'];
-    $password = $_POST['password'];
 
-    $sql = "SELECT * FROM usuarios WHERE usuario='$usuario'";
-    $resultado = mysqli_query($conexion, $sql);
+    $usuario = $_POST['usuario'] ?? '';
+    $password = $_POST['password'] ?? '';
 
-    if ($fila = mysqli_fetch_assoc($resultado)) {
+    if (!empty($usuario) && !empty($password)) {
 
-        if (password_verify($password, $fila['password'])) {
-            $_SESSION['usuario'] = $usuario;
-            echo "Bienvenido, " . $usuario . "! Has iniciado sesión correctamente.";
-            exit();
+        $sql = "SELECT * FROM usuarios WHERE usuario='$usuario'";
+        $resultado = mysqli_query($conexion, $sql);
+
+        if ($fila = mysqli_fetch_assoc($resultado)) {
+
+            if (password_verify($password, $fila['password'])) {
+                $_SESSION['usuario'] = $usuario;
+                header("Location: home.php");
+                exit();
+            } else {
+                echo "Contraseña incorrecta.";
+            }
+
         } else {
-            echo "Contraseña incorrecta.";
+            echo "Usuario no existe.";
         }
 
     } else {
-        echo "Usuario no existe.";
+        echo "Faltan datos.";
     }
 
 } else {
-    echo "Acceso inválido.";
+    header("Location: index.php");
+    exit();
 }
 ?>

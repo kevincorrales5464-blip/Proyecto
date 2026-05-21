@@ -11,7 +11,7 @@
     <div class="container">
         <h2> Iniciar Sesiòn</h2>
         
-        <form method="POST" action="login.php">
+        <form method="POST" action="home.php">
 
             <input type="text" name="usuario" placeholder="Usuario" required>
             <input type="password" name="password" placeholder="Contraseña" required>
