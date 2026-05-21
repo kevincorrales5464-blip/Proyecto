@@ -24,7 +24,7 @@
         include("conexion.php");
 
         $usuario = $_POST['usuario'];
-        $contrasena = $_POST['contraseña'], PASSWORD_DEFAULT;
+        $contraseña = $_POST['contraseña'], PASSWORD_DEFAULT;
 
         $sql = "INSERT INTO usuarios (usuario, contraseña) VALUES ('$usuario', '$contraseña')";
         
