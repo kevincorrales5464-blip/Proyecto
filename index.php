@@ -101,7 +101,7 @@ echo '<!DOCTYPE html>
 </html>';
 else {
     // Si no se encuentra el usuario, redirigimos al login
-    header("Location: index.php");
+    header("Location: login.php");
     exit();
 }
 ?>
