@@ -15,7 +15,7 @@
 
             <input type="text" name="usuario" placeholder="Usuario" required>
             <input type="password" name="password" placeholder="Contraseña" required>
-            <button type="submit">Ingresar</button>
+            <button type="submit" name="login">Ingresar</button>
         </form>
 
         <a href="registro.php">¿No tienes una cuenta? Regístrate aquí</a>
