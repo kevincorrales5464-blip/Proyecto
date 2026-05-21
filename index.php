@@ -106,7 +106,7 @@ echo '<!DOCTYPE html>
     <head>
         <meta charset="UTF-8">
         <title>Error</title>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="imagenes/banner.jpg"></script>
     </head>
     <body>
         <script>
