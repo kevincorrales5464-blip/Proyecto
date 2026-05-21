@@ -99,29 +99,8 @@ echo '<!DOCTYPE html>
 
 </body>
 </html>';
-} else {
-    // Si los datos no coinciden, mostramos el modal de error de forma estética
-    echo '<!DOCTYPE html>
-    <html lang="es">
-    <head>
-        <meta charset="UTF-8">
-        <title>Error</title>
-        <script src="imagenes/banner.jpg"></script>
-    </head>
-    <body>
-        <script>
-            Swal.fire({
-                title: "Error de Autenticación",
-                text: "Usuario o contraseña incorrectos. Por favor, verifica.",
-                icon: "error",
-                confirmButtonColor: "#dc3545",
-                confirmButtonText: "Intentarlo de nuevo"
-            }).then(() => {
-                window.location.href = "login.php";
-            });
-        </script>
-    </body>
-    </html>';
-    exit();
+exit();
+
+
 }
 ?>
