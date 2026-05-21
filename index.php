@@ -41,7 +41,7 @@
             }else {
                 echo "<p>Usuario no existente</p>";
             }
-        <?php
+        ?>
     </div>
 </body>
 </html>
