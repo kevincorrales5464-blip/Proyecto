@@ -99,9 +99,29 @@ echo '<!DOCTYPE html>
 
 </body>
 </html>';
-else {
-    // Si no se encuentra el usuario, redirigimos al login
-    header("Location: login.php");
+} else {
+    // Si los datos no coinciden, mostramos el modal de error de forma estética
+    echo '<!DOCTYPE html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <title>Error</title>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+    <body>
+        <script>
+            Swal.fire({
+                title: "Error de Autenticación",
+                text: "Usuario o contraseña incorrectos. Por favor, verifica.",
+                icon: "error",
+                confirmButtonColor: "#dc3545",
+                confirmButtonText: "Intentarlo de nuevo"
+            }).then(() => {
+                window.location.href = "login.php";
+            });
+        </script>
+    </body>
+    </html>';
     exit();
 }
 ?>
