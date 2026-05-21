@@ -26,12 +26,12 @@ if (mysqli_num_rows($resultado) > 0) {
 
 
     // Renderizamos SweetAlert2 para la bienvenida profesional
-    echo '<!DOCTYPE html>
+    echo "<!DOCTYPE html>
     <html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>RepinCar Taller automotriz</title>
+  <title>RepinCar Taller automotriz</title>";   
   <link rel="stylesheet" href="Repincar.css">
 </head>
 <body>
