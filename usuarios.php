@@ -8,7 +8,7 @@ echo "<table border='1'>";
 echo "<tr><th>ID</th><th>Usuario</th><th>Email</th><th>Acciones</th></tr>";
 
 while ($fila = mysqli_fetch_assoc($resultado)) {
-    echo "<tr>";
+    echo "<tr>;
             <td>{$fila['id']}</td>
             <td>{$fila['usuario']}</td>
             <td>{$fila['email']}</td>
