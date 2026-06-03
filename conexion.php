@@ -1,7 +1,12 @@
 <?php
-$conexion = mysqli_connect("localhost", "root", "", "repincar_db");
+$servername = "localhost";
+$username = "root";   // cambia si tu usuario MySQL es distinto
+$password = "";       // cambia si tu contraseña es distinta
+$dbname = "repincar_db";
 
-if (!$conexion) {
-    die("Error de conexión: " . mysqli_connect_error());
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+if ($conn->connect_error) {
+    die("Error de conexión: " . $conn->connect_error);
 }
 ?>

@@ -1,8 +1,31 @@
-<?php 
+<?php
 session_start();
-if (isset($_SESSION['username'])) {
-    header("Location: index.html");
-    exit();
+include("conexion.php");
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $usuario = $_POST['usuario'];
+    $password = $_POST['password'];
+
+    $sql = "SELECT * FROM usuarios WHERE usuario = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("s", $usuario);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) {
+        $row = $result->fetch_assoc();
+
+        // Verificamos contraseña con password_hash
+        if (password_verify($password, $row['password'])) {
+            $_SESSION['usuario'] = $row['usuario'];
+            header("Location: index.php");
+            exit();
+        } else {
+            $error = "Contraseña incorrecta ❌";
+        }
+    } else {
+        $error = "Usuario no encontrado ❌";
+    }
 }
 ?>
 
@@ -10,41 +33,27 @@ if (isset($_SESSION['username'])) {
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Repincar</title>
+    <title>Login - RepinCar</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <nav class="navbar">
+        <h2>RepinCar Taller Automotriz</h2>
+    </nav>
 
-<h2>Inicio de sesión</h2>
-<p>REPINCAR</p> 
+    <div class="card">
+        <h2>Iniciar Sesión 🔑</h2>
+        <?php if(isset($error)) echo "<p class='error'>$error</p>"; ?>
+        <form method="POST" action="login.php">
+            <label for="usuario">Usuario:</label>
+            <input type="text" name="usuario" required>
 
-<form action="validar_login.php" method="post">
-    <input type="text" name="usuario" placeholder="Usuario" required><br><br>
-    <input type="password" name="password" placeholder="Contraseña" required><br><br>
-    <button type="submit" value="Iniciar sesión">Iniciar sesión</button>
-</form>
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" required>
 
-<p id="mensaje"></p>
-
-<h3>Registrar nuevo usuario</h3>
-
-<input type="text" id="nuevo_usuario" placeholder="Usuario"><br>
-<input type="email" id="nuevo_email" placeholder="Email"><br>
-<input type="password" id="nueva_contraseña" placeholder="Contraseña"><br>
-<button onclick="registrar()">Registrar</button>
-
-<script src="js/ajax.js"></script>
-
-<h3>Usuarios registrados</h3>
-<div id="tablaUsuarios"></div>
-
-<script>
-cargarUsuarios();
-</script>
-
-
+            <button type="submit">Ingresar</button>
+        </form>
+        <p>¿No tienes cuenta? <a href="registro.php">Regístrate aquí</a></p>
+    </div>
 </body>
 </html>
