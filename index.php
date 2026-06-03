@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+$mensaje = "";
+if (isset($_GET['bienvenido'])) {
+    $mensaje = "Bienvenido " . $_SESSION['usuario'];
+}
+
 if (!isset($_SESSION['usuario'])) {
     header("Location: login.php");
     exit();
@@ -27,6 +32,10 @@ if (!isset($_SESSION['usuario'])) {
     </div>
   </header>
 
+  <?php if($mensaje): ?>
+    <div class="bienvenida"><?= $mensaje ?></div>
+  <?php endif; ?>
+
   <!-- Barra de navegación -->
   <nav class="navbar">
     <ul>
@@ -35,6 +44,8 @@ if (!isset($_SESSION['usuario'])) {
       <li><a href="servicios.html" title="Conoce nuestros servicios">Servicios</a></li>
       <li><a href="lineaempresarial.html" title="Nuestros servicios">Línea Empresarial</a></li>
       <li><a href="tienda.html" title="Nuestros productos">Tienda</a></li>
+      <li><a href="usuarios.php">Usuarios</a></li>
+      <li><a href="logout.php" class="logout-btn">Cerrar Sesión</a></li>
     </ul>
   </nav>
 

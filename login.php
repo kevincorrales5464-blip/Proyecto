@@ -2,6 +2,8 @@
 session_start();
 include("conexion.php");
 
+
+
 $error = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

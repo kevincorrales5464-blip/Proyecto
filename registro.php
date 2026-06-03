@@ -1,57 +1,43 @@
 <?php
-session_start();
 include("conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
     $usuario = $_POST['usuario'];
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    // Encriptar contraseña
-    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
+    $sql = "INSERT INTO usuarios (usuario, email, password)
+            VALUES ('$usuario', '$email', '$password')";
 
-    // Insertar en la base de datos
-    $sql = "INSERT INTO usuarios (usuario, email, password) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $usuario, $email, $passwordHash);
-
-    if ($stmt->execute()) {
-        $success = "Usuario registrado correctamente ✅";
+    if ($conexion->query($sql)) {
+        header("Location: login.php");
     } else {
-        $error = "Error al registrar usuario ❌: " . $conn->error;
+        echo "Error al registrar";
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Registro - RepinCar</title>
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="estilo.css">
+<title>Registro</title>
 </head>
 <body>
-    <nav class="navbar">
-        <h2>RepinCar Taller Automotriz</h2>
-    </nav>
 
-    <div class="card">
-        <h2>Registro de Usuario 📝</h2>
-        <?php if(isset($success)) echo "<p class='success'>$success</p>"; ?>
-        <?php if(isset($error)) echo "<p class='error'>$error</p>"; ?>
-        <form method="POST" action="registro.php">
-            <label for="usuario">Usuario:</label>
-            <input type="text" name="usuario" required>
+<div class="form-container">
+    <h2>Registro</h2>
 
-            <label for="email">Correo electrónico:</label>
-            <input type="email" name="email" required>
+    <form method="POST">
+        <input type="text" name="usuario" placeholder="Usuario" required>
+        <input type="email" name="email" placeholder="Correo" required>
+        <input type="password" name="password" placeholder="Contraseña" required>
+        <button type="submit">Registrar</button>
+    </form>
 
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" required>
+    <a href="login.php">Ya tengo cuenta</a>
+</div>
 
-            <button type="submit">Registrarse</button>
-        </form>
-        <p>¿Ya tienes cuenta? <a href="login.php">Inicia sesión aquí</a></p>
-    </div>
 </body>
 </html>
