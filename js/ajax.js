@@ -2,7 +2,7 @@ function registrar() {
 
   let usuario = document.getElementById("nuevo_usuario").value;
   let email = document.getElementById("nuevo_email").value;
-  let password = document.getElementById("nuevo_password").value;
+  let password = document.getElementById("nueva_contraseña").value;
 
   let formData = new FormData();
   formData.append("usuario", usuario);
