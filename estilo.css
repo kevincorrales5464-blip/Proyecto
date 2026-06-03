@@ -107,3 +107,13 @@ table {
     backdrop-filter: blur(10px);
     color: white;
 }
+
+.noti {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #00c851;
+    padding: 15px;
+    border-radius: 8px;
+    display: none;
+}

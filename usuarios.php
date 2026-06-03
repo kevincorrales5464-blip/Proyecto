@@ -14,6 +14,7 @@ $resultado = $conexion->query($sql);
 
 <h2>Usuarios registrados<text-align>center</text-align></h2>
 
+<div id="noti" class="noti"></div>
 <input type="text" id="buscador" placeholder="Buscar usuario..." class="buscador">
 
 <table>
@@ -37,7 +38,8 @@ $resultado = $conexion->query($sql);
         '<?= $fila['password'] ?>'
     )">Editar</button>
 
-    <a href="eliminar.php?id=<?= $fila['id'] ?>">Eliminar</a>
+    <a href="eliminar.php?id=<?= $fila['id'] ?>" class="btn-eliminar">Eliminar</a>
+
 </td>
 </tr>
 <?php endwhile; ?>
@@ -46,10 +48,11 @@ $resultado = $conexion->query($sql);
 <div id="modal" class="modal">
   <div class="modal-content">
     <span class="cerrar" onclick="cerrarModal()">&times;</span>
+    
 
     <h3>Editar Usuario</h3>
 
-    <form action="actualizar.php" method="POST">
+    <form id="formEditar" method="POST">
       <input type="hidden" name="id" id="id">
 
       <input type="text" name="usuario" id="usuario" placeholder="Usuario">
@@ -62,6 +65,35 @@ $resultado = $conexion->query($sql);
 </div>
 
 <script>
+    document.getElementById("formEditar").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let formData = new FormData(this);
+
+    fetch("actualizar.php", {
+        method: "POST",
+        body: formData
+    })
+    .then(res => res.text())
+    .then(data => {
+
+        if (data.trim() === "ok") {
+
+            mostrarNotificacion("Usuario actualizado ✅");
+
+            cerrarModal();
+
+            setTimeout(() => {
+                location.reload(); // luego lo quitamos si quieres full dinámico
+            }, 1000);
+
+        } else {
+            mostrarNotificacion("Error al actualizar ❌");
+        }
+
+    });
+});
+
     document.getElementById("buscador").addEventListener("keyup", function() {
     let filtro = this.value.toLowerCase();
     let filas = document.querySelectorAll("table tr");
@@ -72,8 +104,17 @@ $resultado = $conexion->query($sql);
         let texto = fila.innerText.toLowerCase();
         fila.style.display = texto.includes(filtro) ? "" : "none";
     });
-    });
+});
+    function mostrarNotificacion(mensaje) {
+    let noti = document.getElementById("noti");
 
+    noti.innerText = mensaje;
+    noti.style.display = "block";
+
+    setTimeout(() => {
+        noti.style.display = "none";
+    }, 2000);
+}
     function abrirModal(id, usuario, email, password) {
         document.getElementById("modal").style.display = "flex";
 

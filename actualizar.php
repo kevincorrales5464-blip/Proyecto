@@ -10,7 +10,9 @@ $sql = "UPDATE usuarios
         SET usuario='$usuario', email='$email', password='$password'
         WHERE id=$id";
 
-$conexion->query($sql);
-
-header("Location: usuarios.php");
+if ($conexion->query($sql)) {
+    echo "ok";
+} else {
+    echo "error";
+}
 ?>
