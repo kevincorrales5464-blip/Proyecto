@@ -1,4 +1,7 @@
 <?php
+echo "ENTRANDO A REGISTRO AJAX";
+exit();
+
 include 'conexion.php';
 
 $usuario = $_POST['usuario'];

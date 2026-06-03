@@ -34,7 +34,7 @@ if (isset($_SESSION['username'])) {
 <input type="text" id="nuevo_usuario" placeholder="Usuario"><br>
 <input type="email" id="nuevo_email" placeholder="Email"><br>
 <input type="password" id="nueva_contraseña" placeholder="Contraseña"><br>
-<button onclick="registrarUsuario()">Registrar</button>
+<button onclick="registrar()">Registrar</button>
 
 <script src="js/ajax.js"></script>
 
