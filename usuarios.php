@@ -12,10 +12,14 @@ $resultado = $conexion->query($sql);
     <title>Usuarios</title>
 <link rel="stylesheet" href="estilo.css">
 
-<h2>Usuarios registrados<text-align>center</text-align></h2>
+<h1>Usuarios registrados</h1>
 
 <div id="noti" class="noti"></div>
 <input type="text" id="buscador" placeholder="Buscar usuario..." class="buscador">
+
+<button onclick="window.location.href='login.php'">
+    ← Volver al Login
+</button>
 
 <table>
 <tr>
@@ -38,8 +42,7 @@ $resultado = $conexion->query($sql);
         '<?= $fila['password'] ?>'
     )">Editar</button>
 
-    <a href="eliminar.php?id=<?= $fila['id'] ?>" class="btn-eliminar">Eliminar</a>
-
+    <button onclick="eliminarUsuario(<?= $fila['id'] ?>)">Eliminar</button>
 </td>
 </tr>
 <?php endwhile; ?>
@@ -114,6 +117,11 @@ $resultado = $conexion->query($sql);
     setTimeout(() => {
         noti.style.display = "none";
     }, 2000);
+}
+    function eliminarUsuario(id) {
+    if (confirm("¿Seguro que deseas eliminar este usuario?")) {
+        window.location.href = "eliminar.php?id=" + id;
+    }
 }
     function abrirModal(id, usuario, email, password) {
         document.getElementById("modal").style.display = "flex";
