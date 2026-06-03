@@ -12,7 +12,9 @@ $resultado = $conexion->query($sql);
     <title>Usuarios</title>
 <link rel="stylesheet" href="estilo.css">
 
-<h2>Usuarios registrados</h2>
+<h2>Usuarios registrados<text-align>center</text-align></h2>
+
+<input type="text" id="buscador" placeholder="Buscar usuario..." class="buscador">
 
 <table>
 <tr>
@@ -60,18 +62,30 @@ $resultado = $conexion->query($sql);
 </div>
 
 <script>
-function abrirModal(id, usuario, email, password) {
-    document.getElementById("modal").style.display = "flex";
+    document.getElementById("buscador").addEventListener("keyup", function() {
+    let filtro = this.value.toLowerCase();
+    let filas = document.querySelectorAll("table tr");
 
-    document.getElementById("id").value = id;
-    document.getElementById("usuario").value = usuario;
-    document.getElementById("email").value = email;
-    document.getElementById("password").value = password;
-}
+    filas.forEach((fila, index) => {
+        if (index === 0) return;
 
-function cerrarModal() {
-    document.getElementById("modal").style.display = "none";
-}
+        let texto = fila.innerText.toLowerCase();
+        fila.style.display = texto.includes(filtro) ? "" : "none";
+    });
+    });
+
+    function abrirModal(id, usuario, email, password) {
+        document.getElementById("modal").style.display = "flex";
+
+        document.getElementById("id").value = id;
+        document.getElementById("usuario").value = usuario;
+        document.getElementById("email").value = email;
+        document.getElementById("password").value = password;
+    }
+
+    function cerrarModal() {
+        document.getElementById("modal").style.display = "none";
+    }
 </script>
 
 </body>

@@ -62,3 +62,48 @@ td, th {
     border: 1px solid #ccc;
     padding: 10px;
 }
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background: rgba(0,0,0,0.7);
+
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: #1c1c1c;
+    padding: 30px;
+    border-radius: 10px;
+    width: 350px;
+    text-align: center;
+    box-shadow: 0 0 20px black;
+}
+
+.cerrar {
+    float: right;
+    cursor: pointer;
+    font-size: 20px;
+    color: red;
+}
+
+.buscador {
+    display: block;
+    margin: 20px auto;
+    padding: 10px;
+    width: 50%;
+    border-radius: 8px;
+    border: none;
+}
+
+table {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    color: white;
+}
