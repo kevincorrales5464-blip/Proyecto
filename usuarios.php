@@ -1,8 +1,8 @@
 <?php
 include 'conexion.php';
 
-$sql = SELECT * FROM usuarios;
-$result = mysqli_query($conexion, $sql);
+$sql = "SELECT * FROM usuarios";
+$resultado = mysqli_query($conexion, $sql);
 
 echo "<table border='1'>";
 echo "<tr><th>ID</th><th>Usuario</th><th>Email</th><th>Acciones</th></tr>";
