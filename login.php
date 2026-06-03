@@ -44,7 +44,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="card">
         <h2>Iniciar Sesión 🔑</h2>
         <?php if(isset($error)) echo "<p class='error'>$error</p>"; ?>
-        <form method="POST" action="login.php">
+        <form method="POST" action="index.php">
             <label for="usuario">Usuario:</label>
             <input type="text" name="usuario" required>
 
