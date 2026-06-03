@@ -1,37 +1,44 @@
-<?php
-session_start();
-include("conexion.php");
+<?php session_start(); ?>
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Repincar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    $usuario = $_POST['usuario'] ?? '';
-    $password = $_POST['password'] ?? '';
+<body>
 
-    if (!empty($usuario) && !empty($password)) {
+<h2>Inicio de sesión</h2>
+<p>REPINCAR</p> 
 
-        $sql = "SELECT * FROM usuarios WHERE usuario='$usuario'";
-        $resultado = mysqli_query($conexion, $sql);
+<form action="validar_login.php" method="post">
+    <input type="text" name="username" placeholder="Usuario" required><br><br>
+    <input type="password" name="password" placeholder="Contraseña" required><br><br>
+    <button type="submit" value="Iniciar sesión">Iniciar sesión</button>
+</form>
 
-        if ($fila = mysqli_fetch_assoc($resultado)) {
+<p id="mensaje"></p>
 
-            if (password_verify($password, $fila['password'])) {
-                $_SESSION['usuario'] = $usuario;
-                header("Location: home.php");
-                exit();
-            } else {
-                echo "Contraseña incorrecta.";
-            }
+<h3>Registrar nuevo usuario</h3>
 
-        } else {
-            echo "Usuario no existe.";
-        }
+<input type="text" id="nuevo_usuario" placeholder="Usuario"><br>
+<input type="email" id="nuevo_email" placeholder="Email"><br>
+<input type="password" id="nueva_contraseña" placeholder="Contraseña"><br>
+<button onclick="registrarUsuario()">Registrar</button>
 
-    } else {
-        echo "Faltan datos.";
-    }
+<script src="js/ajax.js"></script>
 
-} else {
-    header("Location: index.php");
-    exit();
-}
-?>
+<h3>Usuarios registrados</h3>
+<div id="tablaUsuarios"></div>
+
+<script>
+cargarUsuarios();
+</script>
+
+
+</body>
+</html>
