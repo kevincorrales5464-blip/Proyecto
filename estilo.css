@@ -147,3 +147,17 @@ button:last-child {
     background: #ff4444;
     color: white;
 }
+
+.btn-volver {
+    display: inline-block;
+    padding: 10px 15px;
+    background: #6c757d;
+    color: white;
+    border-radius: 6px;
+    text-decoration: none;
+    margin: 10px;
+}
+
+.btn-volver:hover {
+    background: #5a6268;
+}
