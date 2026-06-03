@@ -1,7 +1,7 @@
 <?php 
 session_start();
 if (isset($_SESSION['username'])) {
-    header("Location: dashboard.php");
+    header("Location: index.html");
     exit();
 }
 ?>
@@ -22,7 +22,7 @@ if (isset($_SESSION['username'])) {
 <p>REPINCAR</p> 
 
 <form action="validar_login.php" method="post">
-    <input type="text" name="username" placeholder="Usuario" required><br><br>
+    <input type="text" name="usuario" placeholder="Usuario" required><br><br>
     <input type="password" name="password" placeholder="Contraseña" required><br><br>
     <button type="submit" value="Iniciar sesión">Iniciar sesión</button>
 </form>
