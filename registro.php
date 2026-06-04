@@ -4,26 +4,39 @@ include("conexion.php");
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $usuario = $_POST['usuario'];
-    $email = $_POST['email'];
-    $password = $_POST['password'];
+    $usuario = trim($_POST['usuario']);
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
 
-    $sql = "INSERT INTO usuarios (usuario, email, password)
-            VALUES ('$usuario', '$email', '$password')";
+    // Validar campos vacíos
+    if (empty($usuario) || empty($email) || empty($password)) {
+        $_SESSION['mensaje'] = "❌ Todos los campos son obligatorios.";
+        header("Location: registro.php");
+        exit();
+    }
 
-    if ($conexion->query($sql)) {
-        
-        $_SESSION['mensaje'] = "✅ Usuario registrado correctamente,
-                                ya puedes iniciar sesión.";
+    // Encriptar la contraseña
+    $passwordHash = password_hash($password, PASSWORD_DEFAULT);
 
+    // Usar consulta preparada para evitar SQL Injection
+    $sql = "INSERT INTO usuarios (usuario, email, password) VALUES (?, ?, ?)";
+    $stmt = $conexion->prepare($sql);
+    $stmt->bind_param("sss", $usuario, $email, $passwordHash);
+
+    if ($stmt->execute()) {
+        $_SESSION['mensaje'] = "✅ Usuario registrado correctamente, ya puedes iniciar sesión.";
         header("Location: login.php");
         exit();
-
     } else {
-        echo "Error al registrar";
+        $_SESSION['mensaje'] = "❌ Error al registrar usuario.";
+        header("Location: registro.php");
+        exit();
     }
+
+    $stmt->close();
 }
 ?>
+
 
 <!DOCTYPE html>
 <html>

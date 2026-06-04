@@ -43,7 +43,7 @@ if (!isset($_SESSION['usuario'])) {
       <li><a href="quienes.html" title="Conocenos">Quienes Somos</a></li>
       <li><a href="servicios.html" title="Conoce nuestros servicios">Servicios</a></li>
       <li><a href="lineaempresarial.html" title="Nuestros servicios">Línea Empresarial</a></li>
-      <li><a href="tienda.html" title="Nuestros productos">Tienda</a></li>
+      <li><a href="tienda.php" title="Nuestros productos">Tienda</a></li>
       <li><a href="logout.php" class="logout-btn">Cerrar Sesión</a></li>
     </ul>
   </nav>
