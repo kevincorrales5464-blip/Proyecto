@@ -41,13 +41,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <title>Login</title>
 </head>
 <body>
+    <h1>Repincar</h1>
+    <p class="bienvenida">¡Bienvenido a Repincar! Tu plataforma de gestión de pintura automotriz.</p>
 
 <div class="form-container">
-    <h2>Iniciar Sesión</h2>
+    <h2>Inicio de sesion</h2>
+    <p>Ingresa tus datos para acceder</p>
 
     <?php if($error): ?>
         <p class="error"><?= $error ?></p>
     <?php endif; ?>
+
+    <?php
+
+    if (isset($_SESSION['mensaje'])) {
+        echo "<div class='alert-success'>" . $_SESSION['mensaje'] . "</div>";
+        unset($_SESSION['mensaje']);
+    }
+    ?>
 
     <form method="POST">
         <input type="text" name="usuario" placeholder="Usuario" required>
@@ -55,8 +66,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Ingresar</button>
     </form>
 
-    <a href="registro.php">Crear cuenta</a>
+    <button class="btn" onclick="window.location.href='registro.php'">Crear cuenta</button>
 </div>
+
 
 </body>
 </html>

@@ -10,63 +10,86 @@ $resultado = $conexion->query($sql);
 <head>
     <meta charset="UTF-8">
     <title>Usuarios</title>
-<link rel="stylesheet" href="estilo.css">
+<link rel="stylesheet" href="style.css">
 
 <h1>Usuarios registrados</h1>
 
 <div id="noti" class="noti"></div>
-<input type="text" id="buscador" placeholder="Buscar usuario..." class="buscador">
+<div class="top-bar">
+<div class="container">
 
-<button onclick="window.location.href='login.php'">
-    ← Volver al Login
-</button>
+    <!-- HEADER -->
+    <div class="header">
+        <h2>Panel de Usuarios</h2>
+        <span>Administrador</span>
+    </div>
 
-<table>
-<tr>
-<th>ID</th>
-<th>Usuario</th>
-<th>Email</th>
-<th>Acciones</th>
-</tr>
+    <!-- TOP BAR -->
+    <div class="top-bar">
+        <div class="search-box">
+            <input type="text" id="buscador" placeholder="Buscar usuario...">
+            <span>🔍</span>
+        </div>
 
-<?php while($fila = $resultado->fetch_assoc()): ?>
-<tr>
-<td><?= $fila['id'] ?></td>
-<td><?= $fila['usuario'] ?></td>
-<td><?= $fila['email'] ?></td>
-<td>
-    <button onclick="abrirModal(
-        '<?= $fila['id'] ?>',
-        '<?= $fila['usuario'] ?>',
-        '<?= $fila['email'] ?>',
-        '<?= $fila['password'] ?>'
-    )">Editar</button>
+        <button class="btn-login" onclick="window.location.href='login.php'">
+            ← volver
+        </button>
+    </div>
 
-    <button onclick="eliminarUsuario(<?= $fila['id'] ?>)">Eliminar</button>
-</td>
-</tr>
-<?php endwhile; ?>
-</table>
+    <!-- TABLA -->
+    <div class="table-container">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Usuario</th>
+            <th>Email</th>
+            <th>Acciones</th>
+        </tr>
 
-<div id="modal" class="modal">
+        <?php while($fila = $resultado->fetch_assoc()): ?>
+        <tr>
+            <td><?= $fila['id'] ?></td>
+            <td><?= $fila['usuario'] ?></td>
+            <td><?= $fila['email'] ?></td>
+            <td>
+                <button class="btn-edit" onclick="abrirModal(
+                    '<?= $fila['id'] ?>',
+                    '<?= $fila['usuario'] ?>',
+                    '<?= $fila['email'] ?>',
+                    '<?= $fila['password'] ?>'
+                )">Editar</button>
+
+                <button class="btn-delete" onclick="eliminarUsuario(<?= $fila['id'] ?>)">
+                    Eliminar
+                </button>
+            </td>
+        </tr>
+        <?php endwhile; ?>
+    </table>
+
+    <div id="modal" class="modal">
+
   <div class="modal-content">
+
     <span class="cerrar" onclick="cerrarModal()">&times;</span>
-    
 
     <h3>Editar Usuario</h3>
 
-    <form id="formEditar" method="POST">
-      <input type="hidden" name="id" id="id">
+    <form id="formEditar">
+        <input type="hidden" name="id" id="id">
 
-      <input type="text" name="usuario" id="usuario" placeholder="Usuario">
-      <input type="email" name="email" id="email" placeholder="Email">
-      <input type="text" name="password" id="password" placeholder="Password">
+        <input type="text" name="usuario" id="usuario" placeholder="Usuario" required>
+        <input type="email" name="email" id="email" placeholder="Email" required>
+        <input type="text" name="password" id="password" placeholder="Password" required>
 
-      <button type="submit">Actualizar</button>
+        <button type="submit">Actualizar</button>
     </form>
+
   </div>
+
 </div>
 
+</div>
 <script>
     document.getElementById("formEditar").addEventListener("submit", function(e) {
     e.preventDefault();
@@ -123,18 +146,28 @@ $resultado = $conexion->query($sql);
         window.location.href = "eliminar.php?id=" + id;
     }
 }
-    function abrirModal(id, usuario, email, password) {
-        document.getElementById("modal").style.display = "flex";
+function abrirModal(id, usuario, email, password) {
+    const modal = document.getElementById("modal");
+    modal.style.display = "flex";
 
-        document.getElementById("id").value = id;
-        document.getElementById("usuario").value = usuario;
-        document.getElementById("email").value = email;
-        document.getElementById("password").value = password;
-    }
+    document.getElementById("id").value = id;
+    document.getElementById("usuario").value = usuario;
+    document.getElementById("email").value = email;
+    document.getElementById("password").value = password;
+}
 
-    function cerrarModal() {
-        document.getElementById("modal").style.display = "none";
+function cerrarModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+/* CERRAR AL HACER CLICK FUERA */
+window.onclick = function(e) {
+    let modal = document.getElementById("modal");
+    if (e.target === modal) {
+        modal.style.display = "none";
     }
+}
+
 </script>
 
 </body>
